@@ -46,14 +46,14 @@ class MainActivity : AppCompatActivity() {
     }
     private fun filter(text: String) {
         val albumList = ArrayList<AlbumDetails>()
+        var limit:Int = 50
         var albumName:String = text
-        var url = "http://ws.audioscrobbler.com/2.0/?method=album.search&album=$albumName&api_key=cd228ef0b2462f130c7bf249038072df&format=json"
+        var url = "http://ws.audioscrobbler.com/2.0/?method=album.search&album=$albumName&api_key=cd228ef0b2462f130c7bf249038072df&limit=$limit&format=json"
         var request = okhttp3.Request.Builder().url(url).build()
         var client = OkHttpClient()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {
-
             }
             override fun onResponse(call: Call?, response: Response?) {
                 val json = response?.body()?.string()
