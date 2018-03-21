@@ -18,7 +18,8 @@ data class AlbumMatches(
 )
 data class AlbumDetails(
         val name: String,
-        val artist: String
+        val artist: String,
+        val image: ArrayList<AlbumImg>
 )
 data class AlbumImg(
         @SerializedName("#text") val text: String,

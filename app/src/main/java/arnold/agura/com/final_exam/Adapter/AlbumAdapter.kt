@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.album.view.*
 /**
  * Created by Arnold on 21 Mar 2018.
  */
-class AlbumAdapter(val mContext: Context,val albumList: ArrayList<Album>): RecyclerView.Adapter<AlbumViewHolder>() {
+class AlbumAdapter(val mContext: Context,val albumList: ArrayList<AlbumDetails>): RecyclerView.Adapter<AlbumViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val layoutInflater = LayoutInflater.from(parent?.context)
         val cellForRow = layoutInflater.inflate(R.layout.album, parent, false)
@@ -26,12 +26,19 @@ class AlbumAdapter(val mContext: Context,val albumList: ArrayList<Album>): Recyc
     }
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        val album: Album = albumList[position]
-//        holder?.view?.txtAlbumName?.text = album.albumDetails.name
-//        holder?.view?.txtAlbumArtist?.text = album.albumDetails.artist
-
+        val album: AlbumDetails = albumList[position]
+        holder?.view?.txtAlbumName?.text = album.name
+        holder?.view?.txtAlbumArtist?.text = album.artist
         val albumImage = holder?.view?.imgAlbum
-//        Picasso.with(holder?.view?.context).load(album.image).into(albumImage)
+        if(album.image.get(0).text != null)
+        {
+
+            Picasso.with(holder?.view?.context).load(album.image.get(0).text).into(albumImage)
+        }
+        else
+        {
+            Picasso.with(holder?.view?.context).load(R.drawable.ic_launcher_background).into(albumImage)
+        }
     }
 }
 class AlbumViewHolder (val view: View): RecyclerView.ViewHolder(view){
