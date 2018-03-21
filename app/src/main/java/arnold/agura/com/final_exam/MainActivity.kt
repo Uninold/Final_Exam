@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import arnold.agura.com.final_exam.Adapter.AlbumAdapter
 import arnold.agura.com.final_exam.Model.Album
 import arnold.agura.com.final_exam.Model.AlbumDetails
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 filter(query)
+                progressBar.visibility = View.VISIBLE
                 return false
             }
 
@@ -56,7 +60,8 @@ class MainActivity : AppCompatActivity() {
                 val gson = GsonBuilder().create()
                 val album = gson.fromJson(json, Album::class.java)
                 runOnUiThread{
-
+                    textView.visibility = View.GONE
+                    progressBar.visibility = View.GONE
                     for(album in album.results.albummatches.album){
                         albumList.add(album)
                     }
@@ -75,5 +80,19 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    override fun onCreateOptionsMenu(menu: Menu?):Boolean{
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            R.id.clear ->{
+                search.setQuery("",false)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }
+

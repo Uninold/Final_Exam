@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Final_Exam</string>
     <string name="search_an_album">Search an Album</string>
+    <string name="there_is_no_album_present_at_the_moment">There is no album present at the moment</string>
+    <string name="album_name">Album Name</string>
+    <string name="album_artist">Album Artist</string>
+    <string name="clear">Clear</string>
 </resources>
