@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var albumName:String = "Believe"
-        var url =  "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=cd228ef0b2462f130c7bf249038072df&artist=Cher&album=believe&format=json"
+        var albumName:String = "parokya"
+        var url = "http://ws.audioscrobbler.com/2.0/?method=album.search&album=$albumName&api_key=cd228ef0b2462f130c7bf249038072df&format=json"
             var request = okhttp3.Request.Builder().url(url).build()
             var client = OkHttpClient()
 
@@ -59,13 +59,7 @@ class MainActivity : AppCompatActivity() {
     private fun filter(text: String) {
         val filterdNames = ArrayList<Album>()
 
-        for (s in filterdNames) {
-            if (s.albumDetails.name.toLowerCase().contains(text.toLowerCase())) {
-                filterdNames.add(s)
-            }
 
-            recyclerView.adapter = AlbumAdapter(this@MainActivity, filterdNames)
-        }
 
     }
 

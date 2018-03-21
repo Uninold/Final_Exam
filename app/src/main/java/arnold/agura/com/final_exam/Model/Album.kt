@@ -8,7 +8,13 @@ import android.media.Image
  */
 
 data class Album(
-        var albumDetails: AlbumDetails
+       val results: Results
+)
+data class Results(
+        val albummatches: AlbumMatches
+)
+data class AlbumMatches(
+        val album: ArrayList<AlbumDetails>
 )
 data class AlbumDetails(
         val name: String,
